@@ -56,14 +56,14 @@
         .logo-text {
             font-size: 1.8rem;
             font-weight: 700;
-            color: var(--white);
+            color: var(--primary-green);
             letter-spacing: 6px;
             text-decoration: none;
             transition: color 0.3s;
         }
 
         .logo-text:hover {
-            color: var(--primary-green);
+            color: var(--white);
         }
 
         nav ul {
@@ -85,6 +85,45 @@
 
         nav a:hover {
             color: var(--primary-green);
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown > a {
+            cursor: pointer;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(11, 14, 17, 0.98);
+            min-width: 200px;
+            margin-top: 1rem;
+            border: 1px solid rgba(31, 111, 91, 0.3);
+            backdrop-filter: blur(10px);
+            z-index: 1001;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid rgba(31, 111, 91, 0.15);
+        }
+
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-content a:hover {
+            background: rgba(31, 111, 91, 0.1);
         }
 
         .hero {
@@ -123,7 +162,7 @@
             font-weight: 700;
             letter-spacing: 16px;
             margin-bottom: 1.5rem;
-            color: var(--white);
+            color: var(--primary-green);
             text-transform: uppercase;
         }
 
@@ -147,27 +186,44 @@
         .news-carousel-section {
             position: relative;
             z-index: 2;
-            width: 380px;
+            width: 420px;
             flex-shrink: 0;
         }
 
         .news-carousel-wrapper {
-            background: rgba(11, 14, 17, 0.8);
-            border: 1px solid rgba(31, 111, 91, 0.3);
+            background: linear-gradient(135deg, rgba(11, 14, 17, 0.95) 0%, rgba(15, 20, 25, 0.95) 100%);
+            border: 1px solid rgba(31, 111, 91, 0.4);
             overflow: hidden;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .news-carousel-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(90deg, transparent 0%, rgba(31, 111, 91, 0.03) 50%, transparent 100%),
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(31, 111, 91, 0.05) 2px, rgba(31, 111, 91, 0.05) 4px);
+            pointer-events: none;
+            z-index: 1;
         }
 
         .news-carousel-header {
-            background: var(--dark-bg);
+            background: linear-gradient(135deg, rgba(11, 14, 17, 0.98) 0%, rgba(15, 20, 25, 0.98) 100%);
             padding: 1.2rem;
-            border-bottom: 1px solid var(--primary-green);
+            border-bottom: 2px solid var(--primary-green);
+            position: relative;
+            z-index: 2;
         }
 
         .news-carousel-header h3 {
             font-size: 1.1rem;
             font-weight: 700;
-            color: var(--white);
+            color: var(--primary-green);
             text-transform: uppercase;
             letter-spacing: 3px;
             text-align: center;
@@ -189,13 +245,14 @@
         .news-card {
             min-height: 300px;
             height: 300px;
-            background: var(--dark-bg);
+            background: linear-gradient(135deg, rgba(11, 14, 17, 0.95) 0%, rgba(8, 10, 12, 0.95) 100%);
             border-bottom: 1px solid rgba(31, 111, 91, 0.2);
             display: flex;
             flex-direction: column;
             flex-shrink: 0;
-            padding: 2rem 1.5rem;
+            padding: 0;
             position: relative;
+            overflow: hidden;
         }
 
         .news-card::before {
@@ -203,27 +260,63 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 2px;
+            width: 3px;
             height: 100%;
-            background: var(--primary-green);
+            background: linear-gradient(180deg, var(--primary-green) 0%, rgba(31, 111, 91, 0.3) 100%);
+            z-index: 3;
+        }
+
+        .news-card-image {
+            width: 100%;
+            height: 120px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            border-bottom: 1px solid rgba(31, 111, 91, 0.3);
+        }
+
+        .news-card-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(11, 14, 17, 0.8) 100%);
+        }
+
+        .news-card-content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            position: relative;
+            z-index: 2;
         }
 
         .news-card-date {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: var(--primary-green);
             font-weight: 600;
             text-transform: uppercase;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             letter-spacing: 2px;
         }
 
         .news-card-title {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 600;
             color: var(--white);
             margin-bottom: 1rem;
-            line-height: 1.5;
+            line-height: 1.4;
             letter-spacing: 0.5px;
+        }
+
+        .news-card-footer {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .news-card-category {
@@ -231,13 +324,31 @@
             background: transparent;
             border: 1px solid var(--primary-green);
             color: var(--primary-green);
-            padding: 0.4rem 1rem;
-            font-size: 0.7rem;
+            padding: 0.35rem 0.9rem;
+            font-size: 0.65rem;
             font-weight: 700;
             text-transform: uppercase;
-            margin-top: auto;
-            align-self: flex-start;
             letter-spacing: 1.5px;
+        }
+
+        .news-card-read-more {
+            background: transparent;
+            border: 1px solid rgba(31, 111, 91, 0.5);
+            color: var(--primary-green);
+            padding: 0.35rem 1rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        .news-card-read-more:hover {
+            background: var(--primary-green);
+            color: var(--dark-bg);
+            border-color: var(--primary-green);
         }
 
         .carousel-controls {
@@ -246,8 +357,10 @@
             align-items: center;
             gap: 1rem;
             padding: 1rem;
-            background: var(--dark-bg);
+            background: linear-gradient(135deg, rgba(11, 14, 17, 0.98) 0%, rgba(15, 20, 25, 0.98) 100%);
             border-top: 1px solid rgba(31, 111, 91, 0.3);
+            position: relative;
+            z-index: 2;
         }
 
         .carousel-arrow {
@@ -300,7 +413,7 @@
             font-weight: 700;
             text-align: center;
             margin-bottom: 4rem;
-            color: var(--white);
+            color: var(--primary-green);
             text-transform: uppercase;
             letter-spacing: 8px;
         }
@@ -315,6 +428,149 @@
             line-height: 2;
             color: rgba(230, 232, 235, 0.8);
             margin-bottom: 1.5rem;
+            letter-spacing: 0.3px;
+        }
+
+        .divisions-section {
+            padding: 8rem 5%;
+            background: #000;
+            border-top: 1px solid rgba(31, 111, 91, 0.2);
+        }
+
+        .fortnite-showcase {
+            max-width: 1400px;
+            margin: 4rem auto 0;
+            background: linear-gradient(135deg, rgba(11, 14, 17, 0.8) 0%, rgba(8, 10, 12, 0.8) 100%);
+            border: 1px solid rgba(31, 111, 91, 0.3);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .fortnite-showcase::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(0deg, transparent, transparent 4px, rgba(31, 111, 91, 0.03) 4px, rgba(31, 111, 91, 0.03) 8px),
+                repeating-linear-gradient(90deg, transparent, transparent 4px, rgba(31, 111, 91, 0.03) 4px, rgba(31, 111, 91, 0.03) 8px);
+            pointer-events: none;
+        }
+
+        .fortnite-banner {
+            height: 300px;
+            background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .fortnite-banner::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(11, 14, 17, 0.95) 100%);
+        }
+
+        .fortnite-content {
+            padding: 3rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .fortnite-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(31, 111, 91, 0.2);
+        }
+
+        .fortnite-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            text-transform: uppercase;
+            letter-spacing: 6px;
+        }
+
+        .fortnite-status {
+            display: inline-block;
+            background: transparent;
+            border: 2px solid var(--primary-green);
+            color: var(--primary-green);
+            padding: 0.7rem 2rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .fortnite-description {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: rgba(230, 232, 235, 0.8);
+            max-width: 800px;
+            letter-spacing: 0.3px;
+        }
+
+        .vision-section {
+            padding: 8rem 5%;
+            background: var(--dark-bg);
+        }
+
+        .vision-grid {
+            max-width: 1400px;
+            margin: 4rem auto 0;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1px;
+            background: rgba(31, 111, 91, 0.2);
+        }
+
+        .vision-card {
+            background: var(--dark-bg);
+            padding: 4rem 3rem;
+            position: relative;
+        }
+
+        .vision-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--primary-green);
+        }
+
+        .vision-number {
+            font-size: 1rem;
+            color: var(--primary-green);
+            font-weight: 700;
+            letter-spacing: 3px;
+            margin-bottom: 1.5rem;
+        }
+
+        .vision-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .vision-description {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: rgba(230, 232, 235, 0.7);
             letter-spacing: 0.3px;
         }
 
@@ -360,6 +616,123 @@
             letter-spacing: 0.3px;
         }
 
+        .infrastructure-section {
+            padding: 8rem 5%;
+            background: var(--dark-bg);
+        }
+
+        .infrastructure-grid {
+            max-width: 1400px;
+            margin: 4rem auto 0;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .infrastructure-card {
+            background: linear-gradient(135deg, rgba(11, 14, 17, 0.8) 0%, rgba(8, 10, 12, 0.8) 100%);
+            border: 1px solid rgba(31, 111, 91, 0.2);
+            padding: 2.5rem 2rem;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .infrastructure-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--primary-green);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .infrastructure-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .infrastructure-icon {
+            width: 50px;
+            height: 50px;
+            border: 2px solid var(--primary-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            color: var(--primary-green);
+            font-weight: 700;
+        }
+
+        .infrastructure-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .infrastructure-description {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: rgba(230, 232, 235, 0.6);
+            letter-spacing: 0.3px;
+        }
+
+        .partners-section {
+            padding: 8rem 5%;
+            background: #000;
+            border-top: 1px solid rgba(31, 111, 91, 0.2);
+        }
+
+        .partners-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .partner-slot {
+            aspect-ratio: 16/9;
+            background: rgba(31, 111, 91, 0.05);
+            border: 1px solid rgba(31, 111, 91, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .partner-slot::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(0deg, transparent, transparent 10px, rgba(31, 111, 91, 0.03) 10px, rgba(31, 111, 91, 0.03) 20px);
+            pointer-events: none;
+        }
+
+        .partner-slot:hover {
+            border-color: var(--primary-green);
+            background: rgba(31, 111, 91, 0.08);
+        }
+
+        .partner-slot span {
+            font-size: 0.8rem;
+            color: rgba(31, 111, 91, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
         footer {
             padding: 4rem 5% 2rem;
             background: #000;
@@ -385,7 +758,7 @@
         .footer-logo-text {
             font-size: 1.8rem;
             font-weight: 700;
-            color: var(--white);
+            color: var(--primary-green);
             letter-spacing: 6px;
         }
 
@@ -465,6 +838,14 @@
                 grid-template-columns: 1fr;
                 gap: 1px;
             }
+
+            .vision-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .infrastructure-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         @media (max-width: 768px) {
@@ -477,6 +858,10 @@
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
+
+            .infrastructure-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -485,9 +870,16 @@
         <a href="index.html" class="logo-text">KORA</a>
         <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="roster.html">Roster</a></li>
-            <li><a href="management.html">Management</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li class="dropdown">
+                <a>Teams</a>
+                <div class="dropdown-content">
+                    <a href="fortnite.html">Fortnite</a>
+                    <a href="management.html">Management</a>
+                    <a href="news.html">News</a>
+                </div>
+            </li>
+            <li><a href="compete.html">Compete</a></li>
+            <li><a href="shop.html">Shop</a></li>
         </ul>
     </nav>
 
@@ -506,24 +898,48 @@
                 <div class="news-carousel-container">
                     <div class="news-carousel-track" id="newsTrack">
                         <div class="news-card">
-                            <div class="news-card-date">JANUARY 2026</div>
-                            <div class="news-card-title">KORA Esports Officially Launches</div>
-                            <div class="news-card-category">ANNOUNCEMENT</div>
+                            <div class="news-card-image" style="background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&q=80');"></div>
+                            <div class="news-card-content">
+                                <div class="news-card-date">JANUARY 2026</div>
+                                <div class="news-card-title">KORA Esports Officially Launches</div>
+                                <div class="news-card-footer">
+                                    <div class="news-card-category">ANNOUNCEMENT</div>
+                                    <button class="news-card-read-more">READ MORE</button>
+                                </div>
+                            </div>
                         </div>
                         <div class="news-card">
-                            <div class="news-card-date">COMING SOON</div>
-                            <div class="news-card-title">Roster Announcements In Progress</div>
-                            <div class="news-card-category">ROSTER</div>
+                            <div class="news-card-image" style="background-image: url('https://images.unsplash.com/photo-1560253023-3ec5d502959f?w=800&q=80');"></div>
+                            <div class="news-card-content">
+                                <div class="news-card-date">COMING SOON</div>
+                                <div class="news-card-title">Fortnite Roster Announcements In Progress</div>
+                                <div class="news-card-footer">
+                                    <div class="news-card-category">ROSTER</div>
+                                    <button class="news-card-read-more">READ MORE</button>
+                                </div>
+                            </div>
                         </div>
                         <div class="news-card">
-                            <div class="news-card-date">COMING SOON</div>
-                            <div class="news-card-title">Partnership Developments Underway</div>
-                            <div class="news-card-category">PARTNERSHIPS</div>
+                            <div class="news-card-image" style="background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800&q=80');"></div>
+                            <div class="news-card-content">
+                                <div class="news-card-date">COMING SOON</div>
+                                <div class="news-card-title">Partnership Developments Underway</div>
+                                <div class="news-card-footer">
+                                    <div class="news-card-category">PARTNERSHIPS</div>
+                                    <button class="news-card-read-more">READ MORE</button>
+                                </div>
+                            </div>
                         </div>
                         <div class="news-card">
-                            <div class="news-card-date">TBA</div>
-                            <div class="news-card-title">Competitive Season Preparation</div>
-                            <div class="news-card-category">COMPETITION</div>
+                            <div class="news-card-image" style="background-image: url('https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=800&q=80');"></div>
+                            <div class="news-card-content">
+                                <div class="news-card-date">TBA</div>
+                                <div class="news-card-title">Competitive Season Preparation</div>
+                                <div class="news-card-footer">
+                                    <div class="news-card-category">COMPETITION</div>
+                                    <button class="news-card-read-more">READ MORE</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -539,9 +955,49 @@
     <section class="about" id="about">
         <h2 class="section-title">ABOUT KORA</h2>
         <div class="about-content">
-            <p>Founded in 2026, KORA is a modern esports organization operating at the intersection of competition, content, and brand development.</p>
-            <p>KORA was established with a focus on structured operations, disciplined execution, and long-term sustainability within the esports ecosystem. The organization emphasizes professionalism across all functions, including competitive management, content output, and partner engagement.</p>
-            <p>By maintaining a consistent visual identity and a restrained public presence, KORA positions itself as a credible and scalable platform for players, partners, and collaborators.</p>
+            <p>Founded in 2026, <span style="color: var(--primary-green); font-weight: 600;">KORA</span> is a modern esports organization built for the future of competitive Fortnite.</p>
+            <p><span style="color: var(--primary-green); font-weight: 600;">KORA</span> was established with a focus on structured operations, disciplined execution, and long-term sustainability within the Fortnite competitive ecosystem. The organization emphasizes professionalism across all functions, including roster management, content development, and partner engagement.</p>
+            <p>By maintaining a consistent visual identity and a restrained public presence, <span style="color: var(--primary-green); font-weight: 600;">KORA</span> positions itself as a credible and scalable platform for players, content creators, and collaborators in the Fortnite space.</p>
+        </div>
+    </section>
+
+    <section class="divisions-section">
+        <h2 class="section-title">COMPETITIVE DIVISION</h2>
+        <div class="fortnite-showcase">
+            <div class="fortnite-banner"></div>
+            <div class="fortnite-content">
+                <div class="fortnite-header">
+                    <h3 class="fortnite-title">Fortnite</h3>
+                    <div class="fortnite-status">ACTIVE ROSTER</div>
+                </div>
+                <p class="fortnite-description">Our Fortnite division represents the core of <span style="color: var(--primary-green); font-weight: 600;">KORA</span>'s competitive operations. We are building a championship-caliber roster focused on consistent tournament performance, strategic gameplay, and content excellence. Our approach combines data-driven player development, tactical coaching infrastructure, and comprehensive support systems designed to maximize competitive outcomes.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="vision-section">
+        <h2 class="section-title">STRATEGIC VISION</h2>
+        <div class="vision-grid">
+            <div class="vision-card">
+                <div class="vision-number">01</div>
+                <h3 class="vision-title">Elite Competition</h3>
+                <p class="vision-description">Building rosters capable of competing at the highest levels of Fortnite competition. We invest in player development, strategic coaching, and performance analytics to ensure our teams are prepared for championship-level play.</p>
+            </div>
+            <div class="vision-card">
+                <div class="vision-number">02</div>
+                <h3 class="vision-title">Content Innovation</h3>
+                <p class="vision-description">Developing engaging content that showcases our players' personalities and competitive journeys. Our content strategy balances entertainment value with brand consistency, creating meaningful connections with our audience.</p>
+            </div>
+            <div class="vision-card">
+                <div class="vision-number">03</div>
+                <h3 class="vision-title">Brand Excellence</h3>
+                <p class="vision-description">Maintaining a professional, cohesive brand identity across all touchpoints. Every visual element, communication, and partnership is carefully aligned with our organizational standards and long-term vision.</p>
+            </div>
+            <div class="vision-card">
+                <div class="vision-number">04</div>
+                <h3 class="vision-title">Sustainable Growth</h3>
+                <p class="vision-description">Operating with financial discipline and strategic foresight. We prioritize sustainable expansion over rapid scaling, ensuring organizational stability and the ability to support our players and staff effectively.</p>
+            </div>
         </div>
     </section>
 
@@ -563,11 +1019,55 @@
         </div>
     </section>
 
+    <section class="infrastructure-section">
+        <h2 class="section-title">INFRASTRUCTURE</h2>
+        <div class="infrastructure-grid">
+            <div class="infrastructure-card">
+                <div class="infrastructure-icon">01</div>
+                <h4 class="infrastructure-title">Performance Systems</h4>
+                <p class="infrastructure-description">Advanced analytics and coaching infrastructure designed to optimize competitive performance and strategic decision-making.</p>
+            </div>
+            <div class="infrastructure-card">
+                <div class="infrastructure-icon">02</div>
+                <h4 class="infrastructure-title">Content Studio</h4>
+                <p class="infrastructure-description">Professional production capabilities supporting content creation, streaming operations, and brand storytelling initiatives.</p>
+            </div>
+            <div class="infrastructure-card">
+                <div class="infrastructure-icon">03</div>
+                <h4 class="infrastructure-title">Player Support</h4>
+                <p class="infrastructure-description">Comprehensive player services including contract management, mental wellness resources, and career development guidance.</p>
+            </div>
+            <div class="infrastructure-card">
+                <div class="infrastructure-icon">04</div>
+                <h4 class="infrastructure-title">Partnership Operations</h4>
+                <p class="infrastructure-description">Strategic partnership management ensuring brand alignment, value delivery, and sustainable commercial relationships.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="partners-section">
+        <h2 class="section-title">PARTNERS</h2>
+        <div class="partners-grid">
+            <div class="partner-slot">
+                <span>Available</span>
+            </div>
+            <div class="partner-slot">
+                <span>Available</span>
+            </div>
+            <div class="partner-slot">
+                <span>Available</span>
+            </div>
+            <div class="partner-slot">
+                <span>Available</span>
+            </div>
+        </div>
+    </section>
+
     <footer>
         <div class="footer-content">
             <div class="footer-logo-section">
                 <div class="footer-logo-text">KORA</div>
-                <p class="footer-copyright">© 2026 KORA Esports. All rights reserved.</p>
+                <p class="footer-copyright">© 2026 <span style="color: var(--primary-green);">KORA</span> Esports. All rights reserved.</p>
                 <div class="social-links">
                     <a href="#" target="_blank" title="X (Twitter)">
                         <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
@@ -584,7 +1084,7 @@
                 <h4>Organization</h4>
                 <ul>
                     <li><a href="index.html#about">About</a></li>
-                    <li><a href="roster.html">Roster</a></li>
+                    <li><a href="fortnite.html">Fortnite</a></li>
                     <li><a href="management.html">Management</a></li>
                     <li><a href="partnerships.html">Partnerships</a></li>
                 </ul>
@@ -594,7 +1094,7 @@
                 <ul>
                     <li><a href="brand.html">Brand Guidelines</a></li>
                     <li><a href="press.html">Press Kit</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="news.html">News</a></li>
                 </ul>
             </div>
             <div class="footer-section">
